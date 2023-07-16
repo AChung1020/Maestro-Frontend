@@ -1,4 +1,5 @@
 import React, {useState, useContext } from 'react'
+import { useNavigate } from "react-router-dom";
 import { AccountContext } from '../Components/AccountState';
 import Status from '../Components/Status'
 
@@ -19,6 +20,13 @@ const Login = () => {
             console.error("Failed!!!", err);
         })
     };
+
+    let navigate = useNavigate();
+    const routeChange= () => {
+        let path = `/sign_up`;
+        navigate(path);
+    };
+
     return(
         <div>
             <form onSubmit = {onSubmit}>
@@ -41,6 +49,8 @@ const Login = () => {
             </form>
 
             <Status />
+
+            <button className="link-button" onClick={routeChange}>Don't have an account? Register here.</button>
 
         </div>
 

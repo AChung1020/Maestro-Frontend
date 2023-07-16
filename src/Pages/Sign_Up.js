@@ -1,5 +1,6 @@
 import React, {useState } from 'react'
 import UserPool from '../server-AWS/UserPool'
+import { useNavigate } from "react-router-dom";
 
 const Sign_Up = () => {
     const [username, setUsername] = useState("");
@@ -15,13 +16,21 @@ const Sign_Up = () => {
             console.log(data);      
         });
     };
+
+    let navigate = useNavigate();
+    const routeChange= () => {
+        let path = `/login`;
+        navigate(path);
+      };
+
     return(
+
         <div>
             <form onSubmit = {onSubmit}>
-
                 <label htmlFor = "Username">Username</label>
                 <input 
                 id = 'Username'
+                placeholder="ex: example@gmail.com"
                 value = {username}
                 onChange = {(event) => setUsername(event.target.value)}
                 ></input>
@@ -29,12 +38,13 @@ const Sign_Up = () => {
                 <label htmlFor = "password">Password</label>
                 <input 
                 id = 'password'
+                placeholder = "*********"
                 value = {password}
                 onChange = {(event) => setPassword(event.target.value)}
                 ></input>
-
                 <button type='submit'>Sign Up</button>
             </form>
+            <button className="link-button" onClick={routeChange}>Already have an account? Login here.</button>
         </div>
 
     );
