@@ -34,6 +34,7 @@ const Login = () => {
                 <label htmlFor = "Username">Username</label>
                 <input 
                 id = 'Username'
+                placeholder="ex: example@gmail.com"
                 value = {username}
                 onChange = {(event) => setUsername(event.target.value)}
                 ></input>
@@ -41,6 +42,7 @@ const Login = () => {
                 <label htmlFor = "password">Password</label>
                 <input 
                 id = 'password'
+                placeholder = "*********" 
                 value = {password}
                 onChange = {(event) => setPassword(event.target.value)}
                 ></input>
