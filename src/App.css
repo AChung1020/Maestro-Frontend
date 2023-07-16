@@ -44,3 +44,28 @@ body {
 .nav li:hover {
   background-color: #777;
 }
+
+/* login and signup button to switch tabs*/
+.link-button {
+  background: none;
+  color: black;
+  text-decoration: underline dotted 1px;
+}
+
+button {
+  border: none;
+  background-color: rgb(152, 251, 225);
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #984063;
+  
+}
+
+input {
+  margin: 0.35rem 0;
+  padding: 1rem;
+  border-color: black;
+  border-radius: 10px;
+}
+
