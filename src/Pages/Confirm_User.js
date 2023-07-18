@@ -60,7 +60,7 @@ const Confirmation = () => {
         />
         <button type="submit">Confirm Email</button>
         </form>
-        <button type="submit" onSubmit = { handleReConfirmation }>Resend Verification Code</button>
+        <button type="submit" onClick = { handleReConfirmation }>Resend Verification Code</button>
     </div>
   )
 }
