@@ -28,7 +28,7 @@ const Confirmation = () => {
         setErrorMessage('Error confirming email. Please check the confirmation code and try again.');
         setSuccessMessage('');
       } else {
-        console.log('SUCCESS', res)
+        console.log('SUCCESS', res);
         setSuccessMessage('Email confirmed successfully.');
         setErrorMessage('');
       }
