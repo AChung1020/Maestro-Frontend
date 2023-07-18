@@ -54,11 +54,11 @@ body {
 
 button {
   border: none;
-  background-color: rgb(152, 251, 225);
+  background-color: black;
   padding: 15px;
   border-radius: 10px;
   cursor: pointer;
-  color: #984063;
+  color: white;
   
 }
 
