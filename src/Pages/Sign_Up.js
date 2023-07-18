@@ -46,11 +46,11 @@ const Sign_Up = () => {
         UserPool.signUp(username, password, userAttributes, null, (err,data) => {
             if(err) {
                 console.error(err);
-            } 
-            console.log(data);
-            //TODO: Continue to work on Confirming User in order to make the verification process work
-            //navigate('/Confirm_User')
-
+            } else {
+                console.log(data);
+                //TODO: Continue to work on Confirming User in order to make the verification process work
+                navigate('/Confirm_User')
+            }
         });
     };
 
