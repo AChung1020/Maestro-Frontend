@@ -7,6 +7,7 @@ import Home from './Pages/Home'
 import Account from './Pages/Account'
 import Sign_Up from './Pages/Sign_Up'
 import Login from './Pages/Login'
+import Confirm_User from './Pages/Confirm_User'
 import {Route, Routes} from 'react-router-dom'
 
 
@@ -22,6 +23,7 @@ export default function App() {
         <Route path = '/Find_Musicians' element = {<FindMusic />} />
         <Route path = '/Login' element = { <Login /> } />
         <Route path = '/Sign_Up' element = {<Sign_Up />} />
+        <Route path = '/Confirm_User' element = {<Confirm_User />} />
        </Routes>
     </div>
   </React.Fragment>
