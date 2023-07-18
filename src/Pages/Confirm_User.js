@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CognitoUserPool, CognitoUser } from 'amazon-cognito-identity-js'
+import { CognitoUser } from 'amazon-cognito-identity-js'
 import UserPool from '../server-AWS/UserPool'
 
 const Confirmation = () => {
@@ -9,7 +9,7 @@ const Confirmation = () => {
 
   const userPool = UserPool;
   //TODO: figure out a way to push the username from the sign up page into the confirm user page
-  const username = 'andrewchung1212'
+  const username = 'andrewchung12'
 
   const userData = {
 	Username: username,
@@ -22,17 +22,29 @@ const Confirmation = () => {
     event.preventDefault();
 
 
-    const confirmResponse = await cognitoUser.confirmRegistration(confirmationCode, true, function(err, res) {
+   cognitoUser.confirmRegistration(confirmationCode, true, function(err, res) {
       if(err) {
         console.error('Error confirming email:', err);
         setErrorMessage('Error confirming email. Please check the confirmation code and try again.');
         setSuccessMessage('');
       } else {
+        console.log('SUCCESS', res)
         setSuccessMessage('Email confirmed successfully.');
         setErrorMessage('');
       }
     });
   }
+
+  const handleReConfirmation = () => {
+    cognitoUser.resendConfirmationCode(function(err, result) {
+      if (err) {
+        alert(err.message || JSON.stringify(err));
+        return;
+      }
+      console.log('call result: ' + result);
+    });
+  }
+
   return (
     <div>
         <h2>Email Confirmation</h2>
@@ -48,6 +60,7 @@ const Confirmation = () => {
         />
         <button type="submit">Confirm Email</button>
         </form>
+        <button type="submit" onSubmit = { handleReConfirmation }>Resend Verification Code</button>
     </div>
   )
 }
