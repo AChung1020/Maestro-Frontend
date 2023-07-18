@@ -40,8 +40,11 @@ const Confirmation = () => {
       if (err) {
         alert(err.message || JSON.stringify(err));
         return;
+      } else {
+        setSuccessMessage('New Verification Code was Sent to your inbox');
       }
       console.log('call result: ' + result);
+      
     });
   }
 
