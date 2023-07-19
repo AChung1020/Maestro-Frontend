@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { CognitoUser } from 'amazon-cognito-identity-js'
 import UserPool from '../server-AWS/UserPool'
+import { useParams } from 'react-router-dom';
 
 const Confirmation = () => {
   const [confirmationCode, setConfirmationCode] = useState("");
@@ -8,11 +9,12 @@ const Confirmation = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
   const userPool = UserPool;
-  //TODO: figure out a way to push the username from the sign up page into the confirm user page
-  const username = 'andrewchung12'
+
+  //obtains username that is in the URL
+  const { username } = useParams();
 
   const userData = {
-	Username: username,
+	Username: username, //URL username is put in as user data, and therefore can now dynamically verify addresses
 	Pool: userPool,
   };
 

@@ -48,8 +48,8 @@ const Sign_Up = () => {
                 console.error(err);
             } else {
                 console.log(data);
-                //TODO: Continue to work on Confirming User in order to make the verification process work
-                navigate('/Confirm_User')
+                //username shows up in the address bar
+                navigate(`/Confirm_User/${username}`)
             }
         });
     };
@@ -123,7 +123,7 @@ const Sign_Up = () => {
                 
                 <button type='submit'>Sign Up</button>
             </form>
-            <button className="link-button" onClick={routeChangeLogin}>Already have an account? Login here.</button>
+            <button className="link-button" onClick={ routeChangeLogin }>Already have an account? Login here.</button>
         </div>
 
     );
