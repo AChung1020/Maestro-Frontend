@@ -11,7 +11,6 @@ const Status = () => {
                 console.log('Session: ', session);
                 setStatus(true);
             }) .catch((err) => {
-                console.error("Not Logged In!!!", err);
                 setStatus(false);
             });
     }, []);
