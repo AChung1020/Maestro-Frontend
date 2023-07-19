@@ -5,7 +5,6 @@ const Status = () => {
     const [status, setStatus] = useState(false);
 
     const { getSession, logOut } = useContext(AccountContext);
-
     useEffect(() => {
         getSession()
             .then(session => {
@@ -17,9 +16,14 @@ const Status = () => {
             });
     }, []);
 
+    const handleLogOut = () => {
+        logOut();
+        window.location.reload();
+    }
+
     return (
         <div>
-            {status ? (<button onClick = {logOut}>Log Out</button>) : 'Please log in'};
+            {status ? (<button onClick = {handleLogOut}>Log Out</button>) : 'Please log in'};
         </div>
     )
 };

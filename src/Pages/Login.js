@@ -15,6 +15,7 @@ const Login = () => {
         authenticate(username, password)
         .then((data) => {
             console.log("Success!!!", data);
+            window.location.reload(); //may need to change later to redirect to home page after login
         })
         .catch((err) => {
             console.error("Failed!!!", err);
