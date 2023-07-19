@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { CognitoUser } from 'amazon-cognito-identity-js'
 import UserPool from '../server-AWS/UserPool'
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Confirmation = () => {
   const [confirmationCode, setConfirmationCode] = useState("");
@@ -19,7 +20,7 @@ const Confirmation = () => {
   };
 
   const cognitoUser = new CognitoUser(userData)
-
+  let navigate = useNavigate();
   const handleConfirmation = async(event) => {
     event.preventDefault();
 
@@ -33,6 +34,7 @@ const Confirmation = () => {
         console.log('SUCCESS', res);
         setSuccessMessage('Email confirmed successfully.');
         setErrorMessage('');
+        navigate('/Home')
       }
     });
   }
