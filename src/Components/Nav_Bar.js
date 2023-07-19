@@ -12,7 +12,7 @@ export default function Nav_Bar () {
                 <Link to='/Login'>Login</Link>
             </li>
             <li>
-                <Link to ='/Sign_Up'>Sign Up</Link>
+                <Link to ='/Intermediate_Sign_Up_Page'>Sign Up</Link>
             </li>
             <li>
                 <Link to='/Find_Events'>Events</Link>

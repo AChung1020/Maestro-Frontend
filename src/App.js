@@ -5,7 +5,9 @@ import FindEvent from './Pages/Find_Events'
 import FindMusic from './Pages/Find_Musicians'
 import Home from './Pages/Home'
 import Account from './Pages/Account'
-import Sign_Up from './Pages/Sign_Up'
+import Sign_Up_Musician from './Pages/Sign_Up_Musician'
+import Sign_Up_Event_Planner from './Pages/Sign_Up_Event_Planner'
+import Intermediate_Sign_Up_Page from './Pages/Intermediate_Sign_Up_Page';
 import Login from './Pages/Login'
 import Confirm_User from './Pages/Confirm_User'
 import {Route, Routes} from 'react-router-dom'
@@ -22,7 +24,9 @@ export default function App() {
         <Route path = '/Find_Events' element = {<FindEvent />} />
         <Route path = '/Find_Musicians' element = {<FindMusic />} />
         <Route path = '/Login' element = { <Login /> } />
-        <Route path = '/Sign_Up' element = {<Sign_Up />} />
+        <Route path = '/Intermediate_Sign_Up_Page' element = {<Intermediate_Sign_Up_Page />} />
+        <Route path = '/Sign_Up_Musician' element = {<Sign_Up_Musician />} />
+        <Route path = '/Sign_Up_Event_Planner' element = {<Sign_Up_Event_Planner />} />
         <Route path = '/Confirm_User/:username' element = {<Confirm_User />} />
        </Routes>
     </div>
