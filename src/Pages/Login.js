@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie'
 import { AccountContext } from '../Components/AccountState';
 import Status from '../Utilities/Status'
-import { toIntermediateSignUpPage } from '../Utilities/Page_Redirect_Utils'
+import { toIntermediateSignUpPage, toHome } from '../Utilities/Page_Redirect_Utils'
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -11,6 +11,7 @@ const Login = () => {
 
     const { authenticate } = useContext(AccountContext);
     const cookies = new Cookies();
+    const navigate = useNavigate();
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -20,16 +21,14 @@ const Login = () => {
             console.log("Success!!!", data);
             cookies.set("access_token", data.accessToken, { secure: true, sameSite: 'strict' });
             cookies.set('id_token', data.idToken, { secure: true, sameSite: 'strict' });
-            
+            cookies.set('refresh_token', data.refreshToken, { secure: true, sameSite: 'strict' });
+            toHome(navigate);
             window.location.reload(); //may need to change later to redirect to home page after login
         })
         .catch((err) => {
             console.error("Failed!!!", err);
         })
     };
-
-    const navigate = useNavigate();
-
 
     return(
         <div>
