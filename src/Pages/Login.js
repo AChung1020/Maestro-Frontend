@@ -2,7 +2,8 @@ import React, {useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie'
 import { AccountContext } from '../Components/AccountState';
-import Status from '../Components/Status'
+import Status from '../Utilities/Status'
+import { toIntermediateSignUpPage } from '../Utilities/Page_Redirect_Utils'
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -20,18 +21,15 @@ const Login = () => {
             cookies.set("access_token", data.accessToken, { secure: true, sameSite: 'strict' });
             cookies.set('id_token', data.idToken, { secure: true, sameSite: 'strict' });
             
-            //window.location.reload(); //may need to change later to redirect to home page after login
+            window.location.reload(); //may need to change later to redirect to home page after login
         })
         .catch((err) => {
             console.error("Failed!!!", err);
         })
     };
 
-    let navigate = useNavigate();
-    const routeChange= () => {
-        let path = `/Intermediate_Sign_Up_Page`;
-        navigate(path);
-    };
+    const navigate = useNavigate();
+
 
     return(
         <div>
@@ -58,7 +56,7 @@ const Login = () => {
 
             <Status />
 
-            <button className="link-button" onClick={routeChange}>Don't have an account? Register here.</button>
+            <button className="link-button" onClick={() => toIntermediateSignUpPage(navigate)}>Don't have an account? Register here.</button>
 
         </div>
 

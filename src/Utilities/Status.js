@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react'
-import { AccountContext } from './AccountState'
+import { AccountContext } from '../Components/AccountState'
 
 const Status = () => { 
     const [status, setStatus] = useState(false);
@@ -17,7 +17,7 @@ const Status = () => {
 
     const handleLogOut = () => {
         logOut();
-        // window.location.reload();
+        window.location.reload();
     }
 
     return (
