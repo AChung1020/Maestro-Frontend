@@ -1,5 +1,6 @@
 import React, {useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
+import Cookies from 'universal-cookie'
 import { AccountContext } from '../Components/AccountState';
 import Status from '../Components/Status'
 
@@ -8,14 +9,18 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const { authenticate } = useContext(AccountContext);
+    const cookies = new Cookies();
 
     const onSubmit = (event) => {
         event.preventDefault();
-
+        
         authenticate(username, password)
         .then((data) => {
             console.log("Success!!!", data);
-            window.location.reload(); //may need to change later to redirect to home page after login
+            cookies.set("access_token", data.accessToken, { secure: true, sameSite: 'strict' });
+            cookies.set('id_token', data.idToken, { secure: true, sameSite: 'strict' });
+            
+            //window.location.reload(); //may need to change later to redirect to home page after login
         })
         .catch((err) => {
             console.error("Failed!!!", err);

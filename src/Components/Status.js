@@ -17,7 +17,7 @@ const Status = () => {
 
     const handleLogOut = () => {
         logOut();
-        window.location.reload();
+        // window.location.reload();
     }
 
     return (

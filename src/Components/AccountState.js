@@ -1,6 +1,7 @@
 import React, {createContext} from 'react'
 import Pool from '../server-AWS/UserPool'
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js'
+import Cookies from 'universal-cookie'
 
 const AccountContext = createContext();
 
@@ -47,8 +48,11 @@ const AccountState  = (props ) => {
 
     const logOut= () => {
         const user = Pool.getCurrentUser();
-        
+        const cookies = new Cookies();
         if (user) {
+            cookies.remove("access_token");
+            cookies.remove("id_token");
+            cookies.remove("refresh_token");
             user.signOut();
         }
     }
