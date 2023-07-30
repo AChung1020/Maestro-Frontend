@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie'
 const AccountContext = createContext();
 
 const AccountState  = (props ) => {
+    //get session data
     const getSession = async () => {
         return await new Promise((resolve, reject) => {
             const user = Pool.getCurrentUser();
@@ -22,6 +23,7 @@ const AccountState  = (props ) => {
             }
         })
     };
+    //get token data which means user data stored wihtin cognito
     const authenticate = async (Username, Password) => {
          return await new Promise((resolve, reject) => {
             const user = new CognitoUser ({ Username, Pool});
