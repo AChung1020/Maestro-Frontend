@@ -24,7 +24,7 @@ const Login = () => {
 
     let navigate = useNavigate();
     const routeChange= () => {
-        let path = `/sign_up`;
+        let path = `/Intermediate_Sign_Up_Page`;
         navigate(path);
     };
 
