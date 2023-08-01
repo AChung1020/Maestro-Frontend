@@ -109,3 +109,51 @@ input {
 
 
 
+/* Log In */
+
+ 
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Adjust styles for the "Already have an account" button */
+.link-button {
+  background-color: transparent;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+} 
+
+.form-container-login {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #000000; /* Add a border around the container */
+  border-radius: 5px; /* Add rounded corners for a more appealing look */
+  padding: 10px; /* Add some padding inside the container */
+  background-color: #ffffff;
+  max-width: 400px; /* Add this line to set a fixed width for the container */
+  margin: 150px auto; /* Add margin to create space between the top of the page and the box */
+}
+
+.form-container-login h1 {
+  text-align: center; /* Center the header text */
+  margin-bottom: 20px;
+}
+
+.form-container-login label,
+.form-container-login input,
+.form-container-login button {
+  display: block; /* Display form elements as block elements to stack them vertically */
+  margin-bottom: 10px;
+}
+
+.form-container-login input,
+.form-container-login button {
+  width: 50%; /* Make the input and button elements occupy the full container width */
+}
+
