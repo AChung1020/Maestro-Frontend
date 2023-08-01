@@ -9,6 +9,8 @@ body {
 .site-title {
   font-size: 2rem;
 }
+
+/* nav bar */
 .nav {
   background-color: black;
   color: white;
@@ -68,4 +70,42 @@ input {
   border-color: black;
   border-radius: 10px;
 }
+
+
+
+
+/* sign up  */
+
+/* Apply flex container styles */
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Adjust styles for the "Already have an account" button */
+.link-button {
+  background-color: transparent;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.form-container header {
+  font-family: Arial, sans-serif;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+
 

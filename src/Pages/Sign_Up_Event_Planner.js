@@ -2,7 +2,6 @@ import React, {useState } from 'react'
 import UserPool from '../server-AWS/UserPool'
 import { useNavigate } from "react-router-dom";
 
-
 const Sign_Up = () => {
 
     //user and pass
@@ -63,8 +62,9 @@ const Sign_Up = () => {
 
     return(
 
-        <div>
-            <form onSubmit = {onSubmit}>
+        <div class="form-container">
+            <h1 class = "header" >Create an Account:</h1>
+            <form class = "sign-up-form" onSubmit = {onSubmit}>
                 <label htmlFor = "Username">Username</label>
                 <input 
                 id = 'Username'
