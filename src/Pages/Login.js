@@ -31,10 +31,11 @@ const Login = () => {
     };
 
     return(
-        <div>
-            <form onSubmit = {onSubmit}>
+        <div class = "form-container-login">
+            <h1 class='header'>Welcome</h1>
+            <form class = 'login-form' onSubmit = {onSubmit}>
 
-                <label htmlFor = "Username">Username</label>
+                <label htmlFor = "Username">Username:</label>
                 <input 
                 id = 'Username'
                 placeholder="ex: example@gmail.com"
@@ -42,7 +43,7 @@ const Login = () => {
                 onChange = {(event) => setUsername(event.target.value)}
                 ></input>
 
-                <label htmlFor = "password">Password</label>
+                <label htmlFor = "password">Password:</label>
                 <input 
                 id = 'password'
                 placeholder = "*********" 
