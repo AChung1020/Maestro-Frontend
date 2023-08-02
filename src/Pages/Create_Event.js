@@ -1,103 +1,122 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Pool from '../server-AWS/UserPool';
 
 function CreateEvent() {
-  const [eventName, setEventName] = useState('');
-  const [eventDate, setEventDate] = useState('');
-  const [eventDescription, setEventDescription] = useState('');
-  const [eventCost, setEventCost] = useState('');
+  const [eventHost, setEventHost] = useState('');
+  const [formData, setFormData] = useState({
+    eventHost: '',
+    eventName: '',
+    eventDate: '',
+    eventDescription: '',
+    eventCost: '',
+})
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can handle form submission logic here, such as sending data to a backend server.
-    // For this example, we'll just log the event details.
-    console.log('Event Name:', eventName);
-    console.log('Event Date:', eventDate);
-    console.log('Event Description:', eventDescription);
+  //renders onto the page before the page loads, so we only do this once
+  useEffect(() => {
+    // When ownerEmail changes, update the formData state
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      eventHost: eventHost,
+    }));
+
+    const cognitoUser = Pool.getCurrentUser();
+    
+    if (cognitoUser) {
+        cognitoUser.getSession((err, session) => {
+          if (err) {
+            console.error('Error getting user session:', err);
+          } else {
+            console.log('success!!!', session);
+          }
+    
+          cognitoUser.getUserAttributes((err, attributes) => {
+            if (err) {
+              console.error('Error fetching user attributes:', err);
+            } else {
+              // Find the 'email' attribute and get its value
+              const emailAttribute = attributes.find(attr => attr.getName() === 'email');
+              const email = emailAttribute ? emailAttribute.getValue() : null;
+              setEventHost(email);
+              console.log('User email:', email);
+            }
+          });
+        });
+      }
+  }, [eventHost]);
+
+  const handleInputChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Convert formData to JSON string before storing or sending
+    const formDataJson = JSON.stringify(formData);
+    console.log("IT FUCKING WORKED", formDataJson)
+
+    // Here you can also send the formDataJson to the server
+  };
+  
 
   return (
     <div>
-      <h2>Create Event</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            value={eventName}
-            onChange={(e) => setEventName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Date:</label>
-          <input
-            type="date"
-            value={eventDate}
-            onChange={(e) => setEventDate(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Description:</label>
-          <textarea
-            value={eventDescription}
-            onChange={(e) => setEventDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Cost:</label>
-          <input
-          type="number"
-          value={eventCost}
-          onChange={(e) => setEventCost(e.target.value)}
-          required
-          />
-        </div>
-        <div><DropdownMenu /></div>
-        <button type="submit">Create Event</button>
-      </form>
+      <form onSubmit ={handleSubmit}>
+      <label>Event Name:</label>
+        <input type="text" name="eventName" value={formData.eventName} onChange={handleInputChange} />
+        <label>Event Date:</label>
+        <input type="date" name="eventDate" value={formData.eventDate} onChange={handleInputChange}/>
+        <label>Event Description:</label>
+        <input type = "text" name="eventDescription" value={formData.eventDescription} onChange={handleInputChange}/>
+        <label>Event Pay</label>
+        <input type="number" name="eventCost" value={formData.eventCost} onChange={handleInputChange}/>
+        <button type='submit' >Submit</button>
+      </form >
     </div>
   );
 }
 
-function DropdownMenu() {
-  const options = [
-    'Option 1',
-    'Option 2',
-    'Option 3',
-    'Option 4'
-  ];
+// function DropdownMenu() {
+//   const options = [
+//     'Option 1',
+//     'Option 2',
+//     'Option 3',
+//     'Option 4'
+//   ];
 
-  const [selectedOptions, setSelectedOptions] = useState([]);
+//   const [selectedOptions, setSelectedOptions] = useState([]);
 
-  const handleOptionChange = (event) => {
-    const selectedValues = Array.from(event.target.selectedOptions, (option) => option.value);
-    setSelectedOptions(selectedValues);
-  };
+//   const handleOptionChange = (event) => {
+//     const selectedValues = Array.from(event.target.selectedOptions, (option) => option.value);
+//     setSelectedOptions(selectedValues);
+//   };
 
-  return (
-    <div>
-      <h2>Select Options</h2>
-      <select multiple value={selectedOptions} onChange={handleOptionChange}>
-        {options.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-      {selectedOptions.length > 0 && (
-        <div>
-          <p>Selected options:</p>
-          <ul>
-            {selectedOptions.map((option, index) => (
-              <li key={index}>{option}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <h2>Select Options</h2>
+//       <select multiple value={selectedOptions} onChange={handleOptionChange}>
+//         {options.map((option, index) => (
+//           <option key={index} value={option}>
+//             {option}
+//           </option>
+//         ))}
+//       </select>
+//       {selectedOptions.length > 0 && (
+//         <div>
+//           <p>Selected options:</p>
+//           <ul>
+//             {selectedOptions.map((option, index) => (
+//               <li key={index}>{option}</li>
+//             ))}
+//           </ul>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
 
 export default CreateEvent;
