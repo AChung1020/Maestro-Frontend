@@ -8,6 +8,7 @@ import Account from './Pages/Account'
 import Sign_Up_Musician from './Pages/Sign_Up_Musician'
 import Sign_Up_Event_Planner from './Pages/Sign_Up_Event_Planner'
 import Intermediate_Sign_Up_Page from './Pages/Intermediate_Sign_Up_Page';
+import Create_Group from './Pages/Create_Group'
 import Login from './Pages/Login'
 import Confirm_User from './Pages/Confirm_User'
 import {Route, Routes} from 'react-router-dom'
@@ -28,7 +29,9 @@ export default function App() {
         <Route path = '/Sign_Up_Musician' element = {<Sign_Up_Musician />} />
         <Route path = '/Sign_Up_Event_Planner' element = {<Sign_Up_Event_Planner />} />
         <Route path = '/Confirm_User/:username' element = {<Confirm_User />} />
+        <Route path = '/Create_Group' element = {<Create_Group />} />
        </Routes>
+
     </div>
   </React.Fragment>
    
