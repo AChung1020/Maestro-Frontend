@@ -4,7 +4,7 @@ function Find_Musicians() {
     const [data, setData] = useState([]);
 
     const fetchInfo = () => {
-        return fetch("https://jsonplaceholder.typicode.com/jayprasad1231/testFetch")
+        return fetch("https://jsonplaceholder.typicode.com/users")
             .then((response) => response.json())
             .then((data) => setData(data))
             .catch((error) => console.error('Error getting data:', error));
@@ -14,10 +14,10 @@ function Find_Musicians() {
     useEffect(() => {
         fetchInfo()
             .then(() => {
-                // Handle successful fetch if needed (optional)
+                console.log("success!", data);
             })
-            .catch((error) => {
-                // Handle error if needed (optional)
+            .catch((err) => {
+                console.error("Fail!!!", err);
             });
     }, []);
 
@@ -37,7 +37,7 @@ function Find_Musicians() {
                                 marginBlock: 10,
                             }}
                         >
-                            <p style={{ fontSize: 20, color: "white" }}>{dataObj.name}</p>
+                            <p style={{ fontSize: 20, color: "white" }}>{dataObj.id}</p>
                         </div>
                     );
                 })}
