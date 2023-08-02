@@ -20,7 +20,7 @@ function CreateEvent() {
     }));
 
     const cognitoUser = Pool.getCurrentUser();
-    
+
     if (cognitoUser) {
         cognitoUser.getSession((err, session) => {
           if (err) {
@@ -28,7 +28,7 @@ function CreateEvent() {
           } else {
             console.log('success!!!', session);
           }
-    
+
           cognitoUser.getUserAttributes((err, attributes) => {
             if (err) {
               console.error('Error fetching user attributes:', err);
@@ -61,7 +61,7 @@ function CreateEvent() {
 
     // Here you can also send the formDataJson to the server
   };
-  
+
 
   return (
     <div>
@@ -78,45 +78,55 @@ function CreateEvent() {
       </form >
     </div>
   );
+
+function DropdownMenu() {
+  const options = [
+    'Guitar',
+    'Viola',
+    'Violin',
+    'Drums',
+    'Saxophone',
+    'Trumpet',
+    'Tuba',
+    'Clarinet',
+    'Flute',
+    'Cello',
+    'Triangle',
+    'Bass',
+    'Bass Clarinet',
+    'Harp',
+    'Piano',
+    'Bagpipes'
+  ];
+
+
+
+
+  const handleOptionToggle = (option) => {
+    if (selectedOptions.includes(option)) {
+      setSelectedOptions(selectedOptions.filter(item => item !== option));
+    } else {
+      setSelectedOptions([...selectedOptions, option]);
+    }
+  };
+
+  return (
+    <div>
+      <h2>Select Instruments</h2>
+      <select multiple value={selectedOptions} onChange={() => {}}>
+        {options.map((option, index) => (
+          <option
+            key={index}
+            value={option}
+            onClick={() => handleOptionToggle(option)}
+          >
+            {option}
+          </option>
+        ))}
+      </select>
+      <p>Selected Instruments: {selectedOptions.join(', ')}</p>
+    </div>
+  );
 }
-
-// function DropdownMenu() {
-//   const options = [
-//     'Option 1',
-//     'Option 2',
-//     'Option 3',
-//     'Option 4'
-//   ];
-
-//   const [selectedOptions, setSelectedOptions] = useState([]);
-
-//   const handleOptionChange = (event) => {
-//     const selectedValues = Array.from(event.target.selectedOptions, (option) => option.value);
-//     setSelectedOptions(selectedValues);
-//   };
-
-//   return (
-//     <div>
-//       <h2>Select Options</h2>
-//       <select multiple value={selectedOptions} onChange={handleOptionChange}>
-//         {options.map((option, index) => (
-//           <option key={index} value={option}>
-//             {option}
-//           </option>
-//         ))}
-//       </select>
-//       {selectedOptions.length > 0 && (
-//         <div>
-//           <p>Selected options:</p>
-//           <ul>
-//             {selectedOptions.map((option, index) => (
-//               <li key={index}>{option}</li>
-//             ))}
-//           </ul>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
+}
 export default CreateEvent;
