@@ -37,7 +37,7 @@ function Find_Musicians() {
                                 marginBlock: 10,
                             }}
                         >
-                            <p style={{ fontSize: 20, color: "white" }}>{dataObj.id}</p>
+                            <p style={{ fontSize: 20, color: "white" }}>{dataObj.name}</p>
                         </div>
                     );
                 })}
