@@ -8,42 +8,42 @@ function Find_Musicians() {
             .then((response) => response.json())
             .then((data) => setData(data))
             .catch((error) => console.error('Error getting data:', error));
-                setData([]);
     };
 
     useEffect(() => {
         fetchInfo()
             .then(() => {
-                console.log("success!", data);
+                // Handle successful fetch if needed (optional)
             })
-            .catch((err) => {
-                console.error("Fail!!!", err);
+            .catch((error) => {
+                // Handle error if needed (optional)
             });
     }, []);
 
     return (
-        <div>
-            <h1 style={{ color: "black" }}>List of Musicians</h1>
-            <center>
-                {data.map((dataObj, index) => {
-                    return (
-                        <div
-                            key={index}
-                            style={{
-                                width: "15em",
-                                backgroundColor: "gray",
-                                padding: 2,
-                                borderRadius: 10,
-                                marginBlock: 10,
-                            }}
-                        >
-                            <p style={{ fontSize: 20, color: "white" }}>{dataObj.name}</p>
+        <div className="container">
+            <h1>Musician List</h1>
+            <div className="musician-list">
+                {/* Musician items will be generated here */}
+                {data.map((musician, index) => (
+                    <div className="musician-item" key={index}>
+                        <div className="musician-details">
+                            <button>
+                                <div className="musician-image">
+                                    <img src="/Screen Shot 2023-08-02 at 6.09.55 PM.png" alt="Musician Image" width = "200" />
+                                </div>
+                                <h2>Musician Name: {musician.name}</h2>
+                                <p>Instrument: {musician.instrument}</p>
+                                <p>Description: {musician.description}</p>
+                            </button>
+
                         </div>
-                    );
-                })}
-            </center>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
 
 export default Find_Musicians;
+
