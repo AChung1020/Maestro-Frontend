@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Pool from '../server-AWS/UserPool';
 
 function CreateEvent() {
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [eventHost, setEventHost] = useState('');
   const [formData, setFormData] = useState({
     eventHost: '',
@@ -9,6 +10,7 @@ function CreateEvent() {
     eventDate: '',
     eventDescription: '',
     eventCost: '',
+    eventInstruments: [],
 })
 
   //renders onto the page before the page loads, so we only do this once
@@ -55,8 +57,13 @@ function CreateEvent() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const formDataWithInstruments = {
+      ...formData,
+      eventInstruments: selectedOptions,
+    };
     // Convert formData to JSON string before storing or sending
-    const formDataJson = JSON.stringify(formData);
+    const formDataJson = JSON.stringify(formDataWithInstruments);
     console.log("IT FUCKING WORKED", formDataJson)
 
     // Here you can also send the formDataJson to the server
@@ -74,7 +81,8 @@ function CreateEvent() {
         <input type = "text" name="eventDescription" value={formData.eventDescription} onChange={handleInputChange}/>
         <label>Event Pay</label>
         <input type="number" name="eventCost" value={formData.eventCost} onChange={handleInputChange}/>
-        <button type='submit' >Submit</button>
+        <div><DropdownMenu /></div>
+        <button type="submit">Create Event</button>
       </form >
     </div>
   );
@@ -98,9 +106,6 @@ function DropdownMenu() {
     'Piano',
     'Bagpipes'
   ];
-
-
-
 
   const handleOptionToggle = (option) => {
     if (selectedOptions.includes(option)) {
