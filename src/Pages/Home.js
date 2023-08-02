@@ -1,7 +1,21 @@
-import React from 'react'
-
+import React from "react"
+import {Link} from "react-router-dom"
+import SearchBar from "../Components/Search_Bar"
+import MusiciansImage from "../Images/Homepage_Musicians.png"
 function Home() {
-    return <h1> Welcome to the Home Page </h1>
+    return <div className = "homepageOverall">
+        <div className = "homepageLeft">
+            <h1>Where Musicians Meet Clients</h1>
+            <Link to = '/Find_Events'> Search Listings </Link>
+            <SearchBar/>
+        </div>
+        <div className = 'homepageRight'>
+            <img src = {MusiciansImage}
+                alt = "MusiciansImage"
+                height = "1008px"
+                width = "800px"
+            />
+        </div>
+    </div>
 };
-
 export default Home;

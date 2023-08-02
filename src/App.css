@@ -157,3 +157,18 @@ input {
   width: 50%; /* Make the input and button elements occupy the full container width */
 }
 
+/* Homepage */
+.homepageOverall {
+  width: 100%;
+  height: 1000px;
+  display: table;
+}
+.homepageLeft {
+  width: 988px;
+  height: 100%;
+  float: left;
+}
+.homepageRight {
+  height: 100%;
+  float: right;
+}
