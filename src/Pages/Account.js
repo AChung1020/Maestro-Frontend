@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Pool from '../server-AWS/UserPool';
+import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js'
 
-const YourComponent = () => {
+
+const Account = () => {
   const [userAttributes, setUserAttributes] = useState(null);
 
   useEffect(() => {
@@ -60,4 +62,4 @@ const YourComponent = () => {
   );
 };
 
-export default YourComponent;
+export default Account;
