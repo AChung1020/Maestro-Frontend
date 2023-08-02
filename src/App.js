@@ -4,7 +4,8 @@ import Nav from './Components/Nav_Bar'
 import FindEvent from './Pages/Find_Events'
 import FindMusic from './Pages/Find_Musicians'
 import Home from './Pages/Home'
-import Account from './Pages/Account'
+import Account_Musician from './Pages/Account_Musician'
+import Account_EventHost from './Pages/Account_EventHost'
 import Sign_Up_Musician from './Pages/Sign_Up_Musician'
 import Sign_Up_Event_Planner from './Pages/Sign_Up_Event_Planner'
 import Intermediate_Sign_Up_Page from './Pages/Intermediate_Sign_Up_Page';
@@ -22,7 +23,8 @@ export default function App() {
     <div className='container'>
       <Routes>
         <Route path = '/Home' element = {<Home />} />
-        <Route path = '/Account' element = {<Account />} />
+        <Route path = '/Account_Musician' element = {<Account_Musician />} />
+        <Route path = '/Account_Event_Host' element = {<Account_EventHost />} />
         <Route path = '/Find_Events' element = {<FindEvent />} />
         <Route path = '/Find_Musicians' element = {<FindMusic />} />
         <Route path = '/Login' element = { <Login /> } />
