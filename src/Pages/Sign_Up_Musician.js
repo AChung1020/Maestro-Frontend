@@ -13,11 +13,29 @@ const Sign_Up = () => {
     const [birthdate, setBirthDate] = useState("");
     const [address, setAddress] = useState("");
     const [name, setName] = useState("");
+    const [data, setData] = useState("");
     
     let navigate = useNavigate();
 
     const onSubmit = (event) => {
         event.preventDefault();
+
+        const fetchInfo = () => {
+          return fetch("http:localhost8080/api/v1/artist/artist/registerArtist")
+              .then((response) => response.text())
+              .then((data) => setData(data))
+              .catch((error) => console.error('Error getting data:', error));
+      };
+  
+      useEffect(() => {
+          fetchInfo()
+              .then(() => {
+                  // Handle successful fetch if needed (optional)
+              })
+              .catch((error) => {
+                  // Handle error if needed (optional)
+              });
+      }, []);
 
         const userAttributes = [
             {
@@ -40,6 +58,10 @@ const Sign_Up = () => {
               Name: "name",
               Value: name,
             },
+            {
+              Name: "UUID",
+              Value: data,
+            }
             // Add other custom attributes as needed
           ];
 
