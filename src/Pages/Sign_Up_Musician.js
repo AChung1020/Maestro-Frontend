@@ -1,4 +1,4 @@
-import React, {useState } from 'react'
+import React, {useState, useEffect } from 'react'
 import UserPool from '../server-AWS/UserPool'
 import { useNavigate } from "react-router-dom";
 
@@ -20,22 +20,27 @@ const Sign_Up = () => {
     const onSubmit = (event) => {
         event.preventDefault();
 
-        const fetchInfo = () => {
-          return fetch("http:localhost8080/api/v1/artist/artist/registerArtist")
-              .then((response) => response.text())
-              .then((data) => setData(data))
-              .catch((error) => console.error('Error getting data:', error));
-      };
+
+        //commented out the fetch to test custom:UUID NOTE: we cannot have this function within an event handler like onSubmit, 
+        //we need to move it outside the event handle onsubmit. test what happens when we do.
+
+      
+      //   const fetchInfo = () => {
+      //     return fetch("http:localhost8080/api/v1/artist/artist/registerArtist")
+      //         .then((response) => response.text())
+      //         .then((data) => setData(data))
+      //         .catch((error) => console.error('Error getting data:', error));
+      // };
   
-      useEffect(() => {
-          fetchInfo()
-              .then(() => {
-                  // Handle successful fetch if needed (optional)
-              })
-              .catch((error) => {
-                  // Handle error if needed (optional)
-              });
-      }, []);
+      // useEffect(() => {
+      // //     fetchInfo()
+      // //         .then(() => {
+      // //             // Handle successful fetch if needed (optional)
+      // //         })
+      // //         .catch((error) => {
+      // //             // Handle error if needed (optional)
+      // //         });
+      // // }, []);
 
         const userAttributes = [
             {
@@ -59,8 +64,8 @@ const Sign_Up = () => {
               Value: name,
             },
             {
-              Name: "UUID",
-              Value: data,
+              Name: "custom:UUID", //changed to custom:UUID so communication does not fail
+              Value: "ReplaceMeLaterWith Data variable please",
             }
             // Add other custom attributes as needed
           ];
