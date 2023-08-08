@@ -6,7 +6,7 @@ function Home() {
     return <div className = "homepageOverall">
         <div className = "homepageLeft">
             <h1 className = "headerText">Where Musicians Meet Clients</h1>
-            <Link to = '/Find_Events'> Search Listings </Link>
+            <Link to = '/Find_Events'>Search Listings</Link>
             <SearchBar/>
         </div>
         <div className = 'homepageRight'>

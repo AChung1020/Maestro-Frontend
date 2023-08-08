@@ -6,19 +6,19 @@ export default function Nav_Bar () {
         <Link to = "/Home" className='site-title'>Maestro</Link>
         <ul>
             <li>
-                <Link to ='/Account'>Account</Link>
+                <Link to ='/Account'>ACCOUNT</Link>
             </li>
             <li>
-                <Link to='/Login'>Login</Link>
+                <Link to='/Login'>LOGIN</Link>
             </li>
             <li>
-                <Link to ='/Intermediate_Sign_Up_Page'>Sign Up</Link>
+                <Link to ='/Intermediate_Sign_Up_Page'>SIGN UP</Link>
             </li>
             <li>
-                <Link to='/Find_Events'>Events</Link>
+                <Link to='/Find_Events'>EVENTS</Link>
             </li>
             <li>
-                <Link to='/Find_Musicians'>Musicians</Link>
+                <Link to='/Find_Musicians'>MUSICIANS</Link>
             </li>
         </ul>
     </nav>
